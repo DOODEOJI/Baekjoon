@@ -1,5 +1,6 @@
 import sys
 
+# DFS 버전
 class Tree:
     def __init__(self, value):
         self.root = value
@@ -42,3 +43,17 @@ for _ in range(T):
             process_list.append(p.three)
 
     print(cnt)
+
+# DP 버전
+
+T = int(sys.stdin.readline().rstrip())
+dp = [0, 1, 2, 4]
+
+for _ in range(T):
+    n = int(sys.stdin.readline().rstrip())
+    for i in range(4, n+1):
+        if i < len(dp):
+            continue
+        dp.append(dp[i-3]+dp[i-2]+dp[i-1])
+
+    print(dp)
