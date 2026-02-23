@@ -2,20 +2,11 @@ import sys
 
 n, k = map(int, sys.stdin.readline().rstrip().split(" "))
 
-bag = [0 for _ in range(k)]
+bag = [0 for _ in range(k+1)]
 
-for _ in range(n):
+for i in range(n):
     w, v = map(int, sys.stdin.readline().rstrip().split(" "))
-    bag[w-1] = v
-
-for i in range(k):
-    max_value = bag[i]
-    for j in range(i//2):
-        if bag[j] == 0 or bag[i-j-1] == 0:
-            continue
-        if (bag[j] + bag[i-j-1]) > max_value:
-            max_value = bag[j] + bag[i-j-1]
-
-    bag[i] = max_value
+    for j in range(k, w-1, -1):
+        bag[j] = max([bag[j-w]+v, bag[j]])
 
 print(bag[-1])
