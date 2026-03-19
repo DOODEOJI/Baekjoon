@@ -7,7 +7,7 @@ for _ in range(n):
     k = int(sys.stdin.readline().rstrip())
     count[k-1] += 1
 
-for j in range(n):
+for j in range(10000):
     if count[j] == 0:
         continue
     for _ in range(count[j]):
